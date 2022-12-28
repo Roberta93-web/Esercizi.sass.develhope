@@ -1,0 +1,46 @@
+@use "variables.scss" as v;
+@use "functions" as f;
+
+@mixin article-card($color, $border-color, $font-size: 1rem) {
+    color: $color;
+    border: #{f.rem(1px)} solid $border-color;
+    font-size: $font-size;
+    
+}
+
+div {
+    border: #{f.rem(1px)} solid v.$red;
+    padding: #{f.rem(16px)};
+    text-align: center;
+
+    h1 {
+        color: v.$green;
+        text-decoration: underline;
+        text-decoration-color: v.$blue;
+    }
+
+    section {
+        display: flex;
+        margin: #{f.rem(16px)};
+
+        article {
+            @include article-card(v.$red, v.$green);
+
+            &:nth-child(odd) {
+                color: v.$blue;
+            }
+
+            &:nth-child(even) {
+                color: v.$red;
+            }
+
+        }
+
+        &:last-child {
+            article {
+                @include article-card(v.$green, v.$blue, 1.5rem);
+            }
+        }
+    }
+
+}
