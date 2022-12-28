@@ -1,0 +1,43 @@
+$red: red;
+$blue: blue;
+$green: green;
+
+div {
+    border: 1px solid $red;
+
+    h1{
+        color: $green;
+        text-align: center;
+        text-decoration: underline;
+        text-decoration-color: $blue;
+    }
+
+    section {
+        margin: 20px;
+        color: $blue;
+        display: flex;
+        text-align: center;
+
+        article {
+            border: 1px solid $green;
+                
+            &:nth-child(even) {
+                color: $red;
+            }
+        
+            &:nth-child(odd) {
+                color: $blue;
+            }
+                
+        }
+    }
+    
+}
+
+  
+    
+    
+    
+ 
+
+
