@@ -1,0 +1,111 @@
+@use "variables.scss" as v;
+@use "functions.scss" as f;
+@use "sass:color";
+
+$div-class: (
+    "fs-1rem": 1rem,
+    "fs-2rem": 2rem,
+    "fs-3rem": 3rem
+);
+
+@each $key,
+$value in $div-class {
+    .#{$key} {
+        text-align: left;
+        font-size: $value;
+    }
+}
+
+;
+
+@mixin article-card($color, $border-color, $font-size: 1rem) {
+    color: $color;
+    border: #{f.rem(1px)} solid $border-color;
+    $font-size: $font-size;
+}
+
+%text {
+    color: v.$green;
+    text-decoration: underline;
+    text-decoration-color: v.$blue;
+
+}
+
+
+
+body>div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: #{f.rem(1px)} solid v.$red;
+    padding: #{f.rem(16px)};
+
+    h1 {
+        @extend %text;
+    }
+
+    h2 {
+        @extend %text;
+        border: #{f.rem(1px)} solid v.$red;
+        padding: 1rem;
+        align-self: center;
+        text-decoration: none;
+    }
+
+    section {
+        display: flex;
+        margin-bottom: #{f.rem(24px)};
+
+        article {
+            padding: 1rem;
+            @include article-card(v.$red, v.$green);
+
+            &:nth-child(odd) {
+                color: v.$blue;
+            }
+
+            &:nth-child(even) {
+                color: v.$red;
+            }
+
+        }
+
+        &:last-child {
+            article {
+                @include article-card(v.$green, v.$blue, 1.5rem);
+                width: 100%;
+            }
+        }
+
+        &:nth-child(4) {
+            justify-content: space-between;
+        }
+
+        div {
+            width: #{f.rem(45px)};
+            height: #{f.rem(45px)};
+            border: #{f.rem(1px)} solid v.$red;
+
+            @for $var from 1 through 20 {
+                &:nth-child(#{$var}) {
+                    color: color.adjust($color: black, $lightness: $var * 5%);
+                    background-color: color.adjust($color: white, $lightness: $var * -5%);
+
+                    @if $var ==10 {
+                        color: v.$red;
+                        background-color: v.$blue;
+                    }
+
+                    ;
+
+                }
+
+            }
+
+
+        }
+
+
+
+    }
+}
